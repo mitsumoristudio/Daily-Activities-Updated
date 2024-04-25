@@ -145,7 +145,7 @@ extension CalenderView {
                     }
                 }
             }
-            else{
+            else {
                 VStack(spacing: 10){
                     HStack(spacing: 10) {
                         
