@@ -41,7 +41,7 @@ struct DynamicFilteredView<Content: View, T>: View where T: NSManagedObject {
         Group{
             if request.isEmpty{
                 Section {
-                    VStack(spacing: 10) {
+                    VStack(alignment: .center, spacing: 10) {
                         Image(systemName:  "newspaper.circle")
                             .font(.system(size: 160, design: .rounded))
                             .opacity(0.7)
@@ -52,6 +52,9 @@ struct DynamicFilteredView<Content: View, T>: View where T: NSManagedObject {
                             .italic()
                      
                     }
+                    .offset(x: 40)
+                    
+                    
                     Spacer()
                 }
                 .padding()
@@ -139,6 +142,8 @@ struct UpComingFilteredView<Content: View, T> : View where T: NSManagedObject {
                             .italic()
                         
                     }
+                   
+                    
                     Spacer()
                 }
                 .padding()

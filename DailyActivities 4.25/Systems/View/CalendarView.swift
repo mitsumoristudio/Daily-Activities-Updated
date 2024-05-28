@@ -27,17 +27,18 @@ struct CalenderView: View {
             LazyVStack(spacing: 15, pinnedViews: [.sectionHeaders]) {
                 Section {
                     ZStack {
-                        Image("pexels")
-                            .ignoresSafeArea()
-                            .frame(width: 400, height: 1100)
-                        
+//                        Image("pexels")
+//                            .ignoresSafeArea()
+//                            .frame(width: 800, height: 760)
+//                        
                         VStack(spacing: 5) {
                             taskView
                             Spacer()
                         }
+                        
                         .padding(.vertical, 10)
                         .background(Color.white)
-                        .frame(width: 400, height: 1100)
+                        .frame(width: 400, height: 760, alignment: .center)
                         // use height 1400
                         .cornerRadius(20)
                         .shadow(color: Color.black, radius: 20, x: 5, y: 10)
@@ -49,11 +50,11 @@ struct CalenderView: View {
                 } header: {
                     headerViewCalenderView()
                 }
-             
+                .offset(y: -5)
             }
         }
         .ignoresSafeArea(.container, edges: .top)
-        .offset(y: -80)
+        .offset(y: -90)
         // MARK: Add Button
         
         .overlay(alignment: .bottomTrailing) {
@@ -103,7 +104,7 @@ struct CalenderView_Preview : PreviewProvider {
 extension CalenderView {
     @ViewBuilder
     var taskView: some View {
-        LazyVStack(spacing: 20) {
+        LazyVStack(alignment: .leading, spacing: 20) {
             DynamicFilteredView(dateToFilter: taskModel.currentDay) { (object: DailyEntity) in
                 // MARK: add taskcardView here
                 taskCardView(task: object)
@@ -179,14 +180,6 @@ extension CalenderView {
                     })
                     .buttonStyle(.plain)
                     
-//                    Image(systemName: "alarm.fill")
-//                        .font(.subheadline)
-//                        .foregroundColor(Color.pink)
-//
-//
-//                    Text(task.taskDate?.formatted(date: .omitted, time: .shortened) ?? "")
-//                        .foregroundStyle(.blue)
-//                        .font(.headline)
                 }
                 .hLeading()
                 
@@ -284,7 +277,7 @@ extension CalenderView {
                 .padding(.horizontal, 10)
                 
                 Text("\(taskModel.fetchMonthName(from: taskModel.currentDay))")
-                    .font(.headline)
+                    .font(.title)
                     .fontWeight(.medium)
                     .lineLimit(2)
                 //    .offset(x: 50)
@@ -299,9 +292,12 @@ extension CalenderView {
                         .foregroundStyle(Color.black).opacity(0.5)
                         .shadow(radius: 5)
                 })
-                      .offset(x:30)
+                      .offset(x: 10)
        
             }
+            .padding(.vertical, -6)
+            // MARK: Set the Today, Calender down
+            
             .padding(.horizontal, 20)
             
             HStack() {
@@ -382,9 +378,14 @@ extension CalenderView {
         }
     
         
-        .frame(width: 460, height:220, alignment: .bottomLeading)
+        .frame(width: 460, height: 230, alignment: .bottomLeading)
+        // MARK: Ipad frame and dimension
+     //   .frame(minWidth: 600, minHeight: 230, alignment:. leading)
      
         .background(VisualEffectBlur(blurStyle: .systemChromeMaterial))
+        
+        .clipShape(RoundedRectangle(cornerRadius: 20))
+        
         .ignoresSafeArea(.all, edges: .top)
         .padding()
     
